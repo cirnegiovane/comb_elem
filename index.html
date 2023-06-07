@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Combinação de Elementos</title>
+  <style>
+    body {
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .dialog-box {
+      background-color: white;
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 10px;
+      color: black;
+      text-align: center;
+      margin-left: -650px;
+    }
+
+    .result {
+      font-weight: bold;
+      margin-left: 30px;
+      margin-top: 10px;
+    }
+
+    #imagem {
+      width: 200px;
+      height: 150px;
+      position: absolute;
+      top: 400px;
+      left: 760px;
+    }
+  </style>
+  <script>
+    function confirmar() {
+      var elemento1 = document.getElementById("elemento1").value;
+      var elemento2 = document.getElementById("elemento2").value;
+
+      var combinacao = "";
+
+      if ((elemento1 === "agua" && elemento2 === "fogo") || (elemento1 === "fogo" && elemento2 === "agua")) {
+        combinacao = "Vapor";
+        exibirImagem("imagens/vapor.png");
+      } else if ((elemento1 === "agua" && elemento2 === "terra") || (elemento1 === "terra" && elemento2 === "agua")) {
+        combinacao = "Lama";
+        exibirImagem("imagens/lama.jpg");
+      } else if ((elemento1 === "agua" && elemento2 === "ar") || (elemento1 === "ar" && elemento2 === "agua")) {
+        combinacao = "Gelo";
+        exibirImagem("imagens/gelo.webp");
+      } else if (elemento1 == elemento2) {
+        combinacao = "ERRO";
+        exibirImagem("imagens/ERRO.jpg");
+      } else if ((elemento1 === "agua" && elemento2 === "fantasma") || (elemento1 === "fantasma" && elemento2 === "agua")) {
+        combinacao = "Fantasma de Agua";
+        exibirImagem("caminho-da-imagem-fantasma-agua.png");
+      } else if ((elemento1 === "fogo" && elemento2 === "terra") || (elemento1 === "terra" && elemento2 === "fogo")) {
+        combinacao = "Vidro";
+        exibirImagem("imagens/vidro.jpg");
+      } else if ((elemento1 === "fogo" && elemento2 === "ar") || (elemento1 === "ar" && elemento2 === "fogo")) {
+        combinacao = "Raio";
+        exibirImagem("imagens/raio.jpg");
+      } else if ((elemento1 === "fogo" && elemento2 === "fantasma") || (elemento1 === "fantasma" && elemento2 === "fogo")) {
+        combinacao = "Fantasma de Fogo";
+        exibirImagem("imagens/gelo.webp");
+      } else if ((elemento1 === "terra" && elemento2 === "ar") || (elemento1 === "ar" && elemento2 === "terra")) {
+        combinacao = "Poeira";
+        exibirImagem("imagens/poeira.webp");
+      } else if ((elemento1 === "terra" && elemento2 === "fantasma") || (elemento1 === "fantasma" && elemento2 === "terra")) {
+        combinacao = "Fantasma de Terra";
+        exibirImagem("imagens/gelo.webp");
+      } else if ((elemento1 === "ar" && elemento2 === "fantasma") || (elemento1 === "fantasma" && elemento2 === "ar")) {
+        combinacao = "Fantasma de Ar";
+        exibirImagem("imagens/gelo.webp");
+      } else {
+        exibirImagem("");
+      }
+
+      document.getElementById("resultado").textContent = combinacao;
+    }
+
+    function exibirImagem(caminho) {
+      var imagem = document.getElementById("imagem");
+      if (caminho !== "") {
+        imagem.src = caminho;
+        imagem.style.display = "block";
+      } else {
+        imagem.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="dialog-box">
+      <h1>Selecione dois elementos:</h1>
+      <form id="elementForm">
+        <label for="elemento1">Elemento 1:</label>
+        <select id="elemento1">
+          <option value="fogo">Fogo</option>
+          <option value="agua">Água</option>
+          <option value="terra">Terra</option>
+          <option value="ar">Ar</option>
+        </select><br><br>
+        <label for="elemento2">Elemento 2:</label>
+        <select id="elemento2">
+          <option value="fogo">Fogo</option>
+          <option value="agua">Água</option>
+          <option value="terra">Terra</option>
+          <option value="ar">Ar</option>
+        </select><br><br>
+        <button type="button" onclick="confirmar()">Confirmar</button>
+      </form>
+    </div>
+    <div class="result">
+      <h2>Resultado:</h2>
+      <span id="resultado"></span>
+    </div>
+    <div>
+      <img id="imagem" style="display: none;" />
+    </div>
+  </div>
+</body>
+</html>
